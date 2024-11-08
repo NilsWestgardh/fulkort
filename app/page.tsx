@@ -1,7 +1,9 @@
-export default function Home() {
+import React from "react";
+
+export default function Index() {
   return (
     <div>
-      <h1>tet</h1>
+      <h1>Test</h1>
     </div>
   );
 }

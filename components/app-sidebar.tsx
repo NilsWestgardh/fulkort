@@ -11,10 +11,10 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuBadge,
   SidebarHeader,
   SidebarFooter,
 } from "@/components/ui/sidebar";
@@ -24,9 +24,18 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Collapsible } from "@/components/ui/collapsible";
+import { Button } from "@/components/ui/button";
 // Icons
-import { Home, Snowflake, ChevronDown, ChevronUp, User2 } from "lucide-react";
+import {
+  Home,
+  Snowflake,
+  Bell,
+  // ChevronDown,
+  ChevronUp,
+  User2,
+} from "lucide-react";
+
+const CREDITS_LIMIT = 3;
 
 // Menu items.
 const items = [
@@ -36,14 +45,19 @@ const items = [
     icon: Home,
   },
   {
-    title: "Create",
+    title: "Create card",
     url: "/create",
     icon: Snowflake,
   },
   {
-    title: "Cards",
+    title: "My cards",
     url: "/cards",
     icon: Snowflake,
+  },
+  {
+    title: "Notifications",
+    url: "/notifications",
+    icon: Bell,
   },
 ];
 
@@ -59,47 +73,76 @@ export function AppSidebar() {
       >
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  Select Workspace
-                  <ChevronDown className="ml-auto" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
-                <DropdownMenuItem>
-                  <span>Acme Inc</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Acme Corp.</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div
+              id="credits-container"
+              className="
+                flex
+                flex-row
+                justify-between
+                items-center
+                w-full
+                gap-4
+                p-2
+                rounded-md
+                hover:bg-accent
+              "
+            >
+              <div
+                id="credits-info"
+                className="
+                  flex
+                  flex-col
+                  justify-start
+                  items-start
+                "
+              >
+                <p className="text-xs text-muted-foreground">Credits</p>
+                <p className="text-sm font-semibold">
+                  {CREDITS_LIMIT} cards left
+                </p>
+              </div>
+              <Button
+                size="sm"
+                className="
+                  font-semibold
+                  bg-gradient-to-r 
+                  from-red-500 
+                  to-blue-500
+                  hover:from-red-600
+                  hover:to-blue-600
+                "
+              >
+                Buy credits
+              </Button>
+            </div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <Collapsible defaultOpen className="group/collapsible">
-          <SidebarGroup>
-            <SidebarGroupLabel>Application</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
-                      <Link href={item.url}>
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        </Collapsible>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <Link href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                  {item.url === "/create" && (
+                    <SidebarMenuBadge>{CREDITS_LIMIT}</SidebarMenuBadge>
+                  )}
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
+        <div>
+          <Button variant="ghost">🇸🇪 Swedish</Button>
+        </div>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
