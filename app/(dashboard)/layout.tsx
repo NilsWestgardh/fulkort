@@ -3,6 +3,7 @@ import React from "react";
 import { cookies } from "next/headers";
 // Components
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Toaster } from "@/components/ui/toaster";
 import { AppSidebar } from "@/components/app-sidebar";
 
 export default async function RootLayout({
@@ -41,6 +42,7 @@ export default async function RootLayout({
           {children}
         </div>
       </main>
+      <Toaster />
     </SidebarProvider>
   );
 }

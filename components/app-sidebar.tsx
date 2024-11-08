@@ -24,7 +24,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+// Custom components
+import ChangeLanguageButton from "@/components/change-language-button";
 // Icons
 import { Snowflake, ChevronUp, User2 } from "lucide-react";
 
@@ -102,6 +105,7 @@ export function AppSidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+      <Separator />
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
@@ -122,11 +126,10 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        {state !== "collapsed" && <Separator />}
+        {state !== "collapsed" && <ChangeLanguageButton />}
       </SidebarContent>
       <SidebarFooter>
-        <div>
-          <Button variant="ghost">🇸🇪 Swedish</Button>
-        </div>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
