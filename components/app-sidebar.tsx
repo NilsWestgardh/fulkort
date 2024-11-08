@@ -29,7 +29,7 @@ import { Button } from "@/components/ui/button";
 import { Snowflake, ChevronUp, User2 } from "lucide-react";
 
 const CREDITS_LIMIT = 3;
-const MAX_MESSAGE_CHARS = 176;
+// const MAX_MESSAGE_CHARS = 176;
 
 // Menu items.
 const items = [
