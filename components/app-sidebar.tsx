@@ -26,24 +26,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 // Icons
-import {
-  Home,
-  Snowflake,
-  Bell,
-  // ChevronDown,
-  ChevronUp,
-  User2,
-} from "lucide-react";
+import { Snowflake, ChevronUp, User2 } from "lucide-react";
 
 const CREDITS_LIMIT = 3;
+const MAX_MESSAGE_CHARS = 176;
 
 // Menu items.
 const items = [
-  {
-    title: "Home",
-    url: "/home",
-    icon: Home,
-  },
   {
     title: "Create card",
     url: "/create",
@@ -53,11 +42,6 @@ const items = [
     title: "My cards",
     url: "/cards",
     icon: Snowflake,
-  },
-  {
-    title: "Notifications",
-    url: "/notifications",
-    icon: Bell,
   },
 ];
 
