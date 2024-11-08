@@ -4,7 +4,7 @@ import Image from "next/image";
 // Components
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 // Custom components
-// import CardHeader from "@/components/card-header";
+import CardHeader from "@/components/card-header";
 // import CommentsFeed from "@/components/comments-feed";
 
 export default function CardSlugPage() {
@@ -47,8 +47,8 @@ export default function CardSlugPage() {
           />
         </AspectRatio>
       </div>
-      {/* <CardHeader />
-      <CommentsFeed /> */}
+      <CardHeader />
+      {/* <CommentsFeed /> */}
     </div>
   );
 }
