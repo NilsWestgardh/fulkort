@@ -35,15 +35,14 @@ import { Snowflake, ChevronUp, User2 } from "lucide-react";
 const CREDITS_LIMIT = 3;
 // const MAX_MESSAGE_CHARS = 176;
 
-// Menu items.
 const items = [
   {
-    title: "Create card",
+    title: "createCard",
     url: "/create",
     icon: Snowflake,
   },
   {
-    title: "My cards",
+    title: "myCards",
     url: "/cards",
     icon: Snowflake,
   },
@@ -117,7 +116,7 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild>
                     <Link href={item.url}>
                       <item.icon />
-                      <span>{item.title}</span>
+                      <span>{t(item.title)}</span>
                     </Link>
                   </SidebarMenuButton>
                   {item.url === "/create" && (

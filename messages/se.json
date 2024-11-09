@@ -3,7 +3,7 @@
     "createCard": "Skapa kort",
     "myCards": "Mina kort",
     "credits": "Krediter",
-    "cardsLeft": "{count, plural, =0 {inga krediter} =1 {# kredit} other {# krediter}}.",
+    "cardsLeft": "{count, plural, =0 {inga krediter} =1 {# kredit} other {# krediter}}",
     "buyCredits": "Köp krediter",
     "account": "Konto",
     "billing": "Fakturering",

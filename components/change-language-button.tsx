@@ -26,13 +26,15 @@ import { ChevronDown } from "lucide-react";
 const languages = {
   se: {
     code: "se",
-    self: "🇸🇪 Svenska",
-    other: "🇸🇪 Swedish",
+    flag: "🇸🇪",
+    self: "Svenska",
+    other: "Swedish",
   },
   en: {
     code: "en",
-    self: "🇬🇧 English",
-    other: "🇬🇧 Engelska",
+    flag: "🇬🇧",
+    self: "English",
+    other: "Engelska",
   },
 } as const;
 
@@ -52,7 +54,7 @@ export default function ChangeLanguageButton() {
     toast({
       title: t("toastTitle"),
       description: t("toastDescription", {
-        language: languages[newLocale].self,
+        language: languages[newLocale].other,
       }),
     });
   }
@@ -65,7 +67,19 @@ export default function ChangeLanguageButton() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  {languages[locale].self}
+                  <span
+                    className="
+                      flex 
+                      justify-center 
+                      items-center 
+                      w-[1rem] 
+                      h-[1rem] 
+                      pt-0.5
+                    "
+                  >
+                    {languages[locale].flag}
+                  </span>
+                  <span>{languages[locale].self}</span>
                   <ChevronDown className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -74,11 +88,35 @@ export default function ChangeLanguageButton() {
                 className="w-[--radix-popper-anchor-width]"
               >
                 <DropdownMenuItem onClick={() => handleLanguageChange("se")}>
+                  <span
+                    className="
+                      flex 
+                      justify-center 
+                      items-center 
+                      w-[1rem] 
+                      h-[1rem] 
+                      pt-0.5
+                    "
+                  >
+                    {languages.se.flag}
+                  </span>
                   <span>
                     {locale === "se" ? languages.se.self : languages.se.other}
                   </span>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
+                  <span
+                    className="
+                      flex 
+                      justify-center 
+                      items-center 
+                      w-[1rem] 
+                      h-[1rem] 
+                      pt-0.5
+                    "
+                  >
+                    {languages.en.flag}
+                  </span>
                   <span>
                     {locale === "en" ? languages.en.self : languages.en.other}
                   </span>
