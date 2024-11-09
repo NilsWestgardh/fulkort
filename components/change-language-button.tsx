@@ -1,8 +1,11 @@
+"use client";
+
+// Hooks
 import React from "react";
 import { useToast } from "@/hooks/use-toast";
-// Utils
+import { useLocale } from "next-intl";
 import { useTranslations } from "next-intl";
-import { useRouter, usePathname } from "@/i18n/routing";
+import { useRouter } from "@/i18n/routing";
 // Components
 import {
   SidebarGroup,
@@ -19,8 +22,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 // Icons
 import { ChevronDown } from "lucide-react";
-
-const DEFAULT_LOCALE = "se" as const;
 
 const languages = {
   se: {
@@ -39,21 +40,17 @@ type LanguageCode = keyof typeof languages;
 
 export default function ChangeLanguageButton() {
   const router = useRouter();
-  const pathname = usePathname();
+  const locale = useLocale() as LanguageCode;
   const { toast } = useToast();
   const t = useTranslations("ChangeLanguageButton");
 
-  // Get current locale from pathname
-  const currentLocale = (pathname?.split("/")[1] ||
-    DEFAULT_LOCALE) as LanguageCode;
-
-  async function handleLanguageChange(locale: LanguageCode) {
-    await router.push(pathname, { locale });
+  async function handleLanguageChange(newLocale: LanguageCode) {
+    await router.replace("/", { locale: newLocale });
 
     toast({
       title: t("toastTitle"),
       description: t("toastDescription", {
-        language: languages[locale].self,
+        language: languages[newLocale].self,
       }),
     });
   }
@@ -66,7 +63,7 @@ export default function ChangeLanguageButton() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  {languages[currentLocale].self}
+                  {languages[locale].self}
                   <ChevronDown className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -76,16 +73,12 @@ export default function ChangeLanguageButton() {
               >
                 <DropdownMenuItem onClick={() => handleLanguageChange("se")}>
                   <span>
-                    {currentLocale === "en"
-                      ? languages.se.other
-                      : languages.se.self}
+                    {locale === "en" ? languages.se.other : languages.se.self}
                   </span>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
                   <span>
-                    {currentLocale === "se"
-                      ? languages.en.other
-                      : languages.en.self}
+                    {locale === "se" ? languages.en.other : languages.en.self}
                   </span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
