@@ -8,5 +8,11 @@
     "account": "Account",
     "billing": "Billing",
     "signOut": "Sign out"
+  },
+  "CardHeader": {
+    "createdBy": "Created by",
+    "daysAgo": "{days, plural, =0 {just now} =1 {a day ago} other {# days ago}}.",
+    "share": "Share",
+    "download": "Download"
   }
 }

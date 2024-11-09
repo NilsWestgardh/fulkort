@@ -1,13 +1,19 @@
 import React from "react";
+// Utils
+import { useTranslations } from "next-intl";
 // Components
 import { Button } from "@/components/ui/button";
 // Icons
 import { FaShare, FaDownload } from "react-icons/fa6";
 
 const placeholder_username = "John Doe";
-const placeholder_date = "2024-01-01";
+const placeholder_days = 2;
 
 export default function CardHeader() {
+  const t = useTranslations("CardHeader");
+
+  // TODO: Dynamically calculate days ago.
+
   return (
     <div
       id="fulkort-header-container"
@@ -21,11 +27,11 @@ export default function CardHeader() {
       "
     >
       <small className="text-muted-foreground">
-        Created by{" "}
+        {t("createdBy")}{" "}
         <span className="font-semibold text-foreground">
           {placeholder_username}
         </span>{" "}
-        on {placeholder_date}
+        {t("daysAgo", { days: placeholder_days })}
       </small>
       <div
         id="fulkort-actions-container"
@@ -40,11 +46,11 @@ export default function CardHeader() {
       >
         <Button variant="outline">
           <FaShare className="w-[1.2rem] h-[1.2rem]" />
-          Dela
+          {t("share")}
         </Button>
         <Button variant="outline">
           <FaDownload className="w-[1.2rem] h-[1.2rem]" />
-          Ladda ner
+          {t("download")}
         </Button>
       </div>
     </div>

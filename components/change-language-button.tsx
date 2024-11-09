@@ -3,6 +3,8 @@
 // Hooks
 import React, { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+// Utils
+import { useTranslations } from "next-intl";
 // Components
 import {
   SidebarGroup,
@@ -27,12 +29,14 @@ const languages = {
 
 export default function ChangeLanguageButton() {
   const [language, setLanguage] = useState(languages.SE);
+
   const { toast } = useToast();
+  const t = useTranslations("ChangeLanguageButton");
 
   function handleLanguageChange(newLanguage: string) {
     toast({
-      title: "Language changed",
-      description: `You have changed the language to ${newLanguage}`,
+      title: t("toastTitle"),
+      description: t("toastDescription", { language: newLanguage }),
     });
     setLanguage(newLanguage);
   }

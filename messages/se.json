@@ -8,5 +8,15 @@
     "account": "Konto",
     "billing": "Fakturering",
     "signOut": "Logga ut"
+  },
+  "CardHeader": {
+    "createdBy": "Skapad av",
+    "daysAgo": "{days, plural, =0 {just nu} =1 {för en dag} other {för # dagar}}.",
+    "share": "Dela",
+    "download": "Ladda ner"
+  },
+  "ChangeLanguageButton": {
+    "toastTitle": "Språk ändrat",
+    "toastDescription": "Du har ändrat språket till {language}."
   }
 }
