@@ -5,7 +5,7 @@ import React from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocale } from "next-intl";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/routing";
+import { useRouter, usePathname } from "@/i18n/routing";
 // Components
 import {
   SidebarGroup,
@@ -40,12 +40,14 @@ type LanguageCode = keyof typeof languages;
 
 export default function ChangeLanguageButton() {
   const router = useRouter();
+  const pathname = usePathname();
   const locale = useLocale() as LanguageCode;
   const { toast } = useToast();
   const t = useTranslations("ChangeLanguageButton");
 
   async function handleLanguageChange(newLocale: LanguageCode) {
-    await router.replace("/", { locale: newLocale });
+    // Replace path with current path + new locale
+    await router.replace(pathname, { locale: newLocale });
 
     toast({
       title: t("toastTitle"),
@@ -73,12 +75,12 @@ export default function ChangeLanguageButton() {
               >
                 <DropdownMenuItem onClick={() => handleLanguageChange("se")}>
                   <span>
-                    {locale === "en" ? languages.se.other : languages.se.self}
+                    {locale === "se" ? languages.se.self : languages.se.other}
                   </span>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
                   <span>
-                    {locale === "se" ? languages.en.other : languages.en.self}
+                    {locale === "en" ? languages.en.self : languages.en.other}
                   </span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
