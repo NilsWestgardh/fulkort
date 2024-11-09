@@ -1,9 +1,20 @@
 import React from "react";
+// Custom components
+import CreateImage from "@/components/create/create-image";
 
 export default function CreatePage() {
   return (
-    <div>
-      <h1>CreatePage</h1>
+    <div
+      id="create-card-page-container"
+      className="
+        flex
+        flex-col
+        items-center
+        justify-center
+        w-full
+      "
+    >
+      <CreateImage />
     </div>
   );
 }

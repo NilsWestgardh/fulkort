@@ -18,5 +18,9 @@
   "ChangeLanguageButton": {
     "toastTitle": "Språk ändrat",
     "toastDescription": "Du har ändrat språket till {language}."
+  },
+  "CreateImage": {
+    "generateImage": "Generera bild",
+    "generating": "Genererar..."
   }
 }

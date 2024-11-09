@@ -18,5 +18,9 @@
   "ChangeLanguageButton": {
     "toastTitle": "Language changed",
     "toastDescription": "You have changed the language to {language}."
+  },
+  "CreateImage": {
+    "generateImage": "Generate image",
+    "generating": "Generating..."
   }
 }
