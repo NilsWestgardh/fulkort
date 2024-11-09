@@ -9,6 +9,8 @@ import clsx from "clsx";
 // Components
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+// Custom components
+import OptionsBadges from "@/components/create/options-badges";
 
 const placeholder_prompt =
   "A Christmas scene. In Stockholm, Sweden. Gnomes, tree, lights. Digital painting, rule of thirds, cozy, odd, bad art, poor quality, weird.";
@@ -86,6 +88,7 @@ export default function CreateImage() {
           </AspectRatio>
         </div>
       )}
+      <OptionsBadges />
       <Button
         onClick={handleGenerateImage}
         disabled={isLoading}
