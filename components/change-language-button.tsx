@@ -27,12 +27,12 @@ const languages = {
   se: {
     code: "se",
     self: "🇸🇪 Svenska",
-    other: "🇬🇧 Engelska",
+    other: "🇸🇪 Swedish",
   },
   en: {
     code: "en",
     self: "🇬🇧 English",
-    other: "🇸🇪 Swedish",
+    other: "🇬🇧 Engelska",
   },
 } as const;
 
