@@ -3,6 +3,7 @@
 // Hooks
 import { useSidebar } from "@/components/ui/sidebar";
 // Utils
+import { useTranslations } from "next-intl";
 import clsx from "clsx";
 import Link from "next/link";
 // Components
@@ -50,6 +51,7 @@ const items = [
 
 export function AppSidebar() {
   const { state, isMobile } = useSidebar();
+  const t = useTranslations("Sidebar");
 
   return (
     <Sidebar collapsible="icon">
@@ -83,9 +85,9 @@ export function AppSidebar() {
                   items-start
                 "
               >
-                <p className="text-xs text-muted-foreground">Credits</p>
+                <p className="text-xs text-muted-foreground">{t("credits")}</p>
                 <p className="text-sm font-semibold">
-                  {CREDITS_LIMIT} cards left
+                  {t("cardsLeft", { count: CREDITS_LIMIT })}
                 </p>
               </div>
               <Button
@@ -99,7 +101,7 @@ export function AppSidebar() {
                   hover:to-blue-600
                 "
               >
-                Buy credits
+                {t("buyCredits")}
               </Button>
             </div>
           </SidebarMenuItem>
@@ -144,13 +146,13 @@ export function AppSidebar() {
                 className="w-[--radix-popper-anchor-width]"
               >
                 <DropdownMenuItem>
-                  <span>Account</span>
+                  <span>{t("account")}</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <span>Billing</span>
+                  <span>{t("billing")}</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <span>Sign out</span>
+                  <span>{t("signOut")}</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
