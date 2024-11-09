@@ -14,5 +14,9 @@
     "daysAgo": "{days, plural, =0 {just now} =1 {a day ago} other {# days ago}}.",
     "share": "Share",
     "download": "Download"
+  },
+  "ChangeLanguageButton": {
+    "toastTitle": "Language changed",
+    "toastDescription": "You have changed the language to {language}."
   }
 }

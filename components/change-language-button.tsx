@@ -1,10 +1,8 @@
-"use client";
-
-// Hooks
-import React, { useState } from "react";
+import React from "react";
 import { useToast } from "@/hooks/use-toast";
 // Utils
 import { useTranslations } from "next-intl";
+import { useRouter, usePathname } from "@/i18n/routing";
 // Components
 import {
   SidebarGroup,
@@ -22,23 +20,42 @@ import {
 // Icons
 import { ChevronDown } from "lucide-react";
 
+const DEFAULT_LOCALE = "se" as const;
+
 const languages = {
-  SE: "🇸🇪 Swedish",
-  EN: "🇬🇧 English",
-};
+  se: {
+    code: "se",
+    self: "🇸🇪 Svenska",
+    other: "🇬🇧 Engelska",
+  },
+  en: {
+    code: "en",
+    self: "🇬🇧 English",
+    other: "🇸🇪 Swedish",
+  },
+} as const;
+
+type LanguageCode = keyof typeof languages;
 
 export default function ChangeLanguageButton() {
-  const [language, setLanguage] = useState(languages.SE);
-
+  const router = useRouter();
+  const pathname = usePathname();
   const { toast } = useToast();
   const t = useTranslations("ChangeLanguageButton");
 
-  function handleLanguageChange(newLanguage: string) {
+  // Get current locale from pathname
+  const currentLocale = (pathname?.split("/")[1] ||
+    DEFAULT_LOCALE) as LanguageCode;
+
+  async function handleLanguageChange(locale: LanguageCode) {
+    await router.push(pathname, { locale });
+
     toast({
       title: t("toastTitle"),
-      description: t("toastDescription", { language: newLanguage }),
+      description: t("toastDescription", {
+        language: languages[locale].self,
+      }),
     });
-    setLanguage(newLanguage);
   }
 
   return (
@@ -49,7 +66,7 @@ export default function ChangeLanguageButton() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  {language === languages.SE ? "🇸🇪 Svenska" : language}
+                  {languages[currentLocale].self}
                   <ChevronDown className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -57,18 +74,18 @@ export default function ChangeLanguageButton() {
                 side="bottom"
                 className="w-[--radix-popper-anchor-width]"
               >
-                <DropdownMenuItem
-                  onClick={() => handleLanguageChange(languages.SE)}
-                >
+                <DropdownMenuItem onClick={() => handleLanguageChange("se")}>
                   <span>
-                    {language === languages.SE ? "🇸🇪 Svenska" : languages.SE}
+                    {currentLocale === "en"
+                      ? languages.se.other
+                      : languages.se.self}
                   </span>
                 </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => handleLanguageChange(languages.EN)}
-                >
+                <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
                   <span>
-                    {language === languages.SE ? "🇬🇧 Engelska" : languages.EN}
+                    {currentLocale === "se"
+                      ? languages.en.other
+                      : languages.en.self}
                   </span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
